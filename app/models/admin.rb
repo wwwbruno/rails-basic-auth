@@ -6,6 +6,10 @@ class Admin < ActiveRecord::Base
 
   has_secure_password
 
+  def self.authenticate(login, password)
+  	Admin.find_by(:login => login).try(:authenticate, password)
+  end
+
   private
 
   def admim_params
