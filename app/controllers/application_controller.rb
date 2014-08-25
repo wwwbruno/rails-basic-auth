@@ -8,10 +8,10 @@ class ApplicationController < ActionController::Base
   private
 
   def current_admin
-    @current_admin ||= User.find(session[:admin_id]) if session[:admin_id]
+    @current_admin ||= Admin.find(session[:admin_id]) if session[:admin_id]
   end
 
   def authenticate_admin!
-  	redirect_to root_url, :alert => "You are not logged in!" unless @current_admin
+  	redirect_to root_url, :alert => "You are not logged in!" unless current_admin
   end
 end
